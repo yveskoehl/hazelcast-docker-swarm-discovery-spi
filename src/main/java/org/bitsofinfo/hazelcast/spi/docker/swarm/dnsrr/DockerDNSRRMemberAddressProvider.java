@@ -14,20 +14,13 @@
 
 package org.bitsofinfo.hazelcast.spi.docker.swarm.dnsrr;
 
+import com.hazelcast.instance.EndpointQualifier;
 import com.hazelcast.logging.ILogger;
 import com.hazelcast.logging.Logger;
 import com.hazelcast.spi.MemberAddressProvider;
 
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.Set;
+import java.net.*;
+import java.util.*;
 
 /**
  * Member Address Provider for hazelcast that cross-references the service
@@ -36,8 +29,7 @@ import java.util.Set;
  *
  * @author Cardds
  */
-public class DockerDNSRRMemberAddressProvider
-        implements MemberAddressProvider {
+public class DockerDNSRRMemberAddressProvider implements MemberAddressProvider {
     public static Properties properties;
     public static InetSocketAddress bindAddress = null;
     ILogger logger = Logger.getLogger(DockerDNSRRMemberAddressProvider.class);
@@ -152,8 +144,20 @@ public class DockerDNSRRMemberAddressProvider
         return bindAddress;
     }
 
+    //FIXME: deep review required
+    @Override
+    public InetSocketAddress getBindAddress(EndpointQualifier qualifier) {
+        return getBindAddress();
+    }
+
     @Override
     public InetSocketAddress getPublicAddress() {
         return bindAddress;
+    }
+
+    //FIXME: deep review required
+    @Override
+    public InetSocketAddress getPublicAddress(EndpointQualifier qualifier) {
+        return getPublicAddress();
     }
 }

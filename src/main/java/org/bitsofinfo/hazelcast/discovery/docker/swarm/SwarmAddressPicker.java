@@ -1,11 +1,13 @@
 package org.bitsofinfo.hazelcast.discovery.docker.swarm;
 
 import com.hazelcast.instance.AddressPicker;
+import com.hazelcast.instance.EndpointQualifier;
 import com.hazelcast.logging.ILogger;
-import com.hazelcast.nio.Address;
+import com.hazelcast.cluster.Address;
 
 import java.net.URI;
 import java.nio.channels.ServerSocketChannel;
+import java.util.Map;
 
 /**
  * Custom AddressPicker that works for hazelcast instances running in swarm service instances
@@ -119,17 +121,47 @@ public class SwarmAddressPicker implements AddressPicker {
         // nothing to do, done in SwarmDiscoveryUtil above
     }
 
+    //FIXME: deep review required
     @Override
+    public Address getBindAddress(EndpointQualifier qualifier) {
+        return getBindAddress();
+    }
+
+    //FIXME: deep review required
+    @Override
+    public Address getPublicAddress(EndpointQualifier qualifier) {
+        return getPublicAddress();
+    }
+
+    //FIXME: deep review required
+    @Override
+    public Map<EndpointQualifier, Address> getPublicAddressMap() {
+        return null;
+    }
+
+    //FIXME: deep review required
+    @Override
+    public ServerSocketChannel getServerSocketChannel(EndpointQualifier qualifier) {
+        return getServerSocketChannel();
+    }
+
+    //FIXME: deep review required
+    @Override
+    public Map<EndpointQualifier, ServerSocketChannel> getServerSocketChannels() {
+        return null;
+    }
+
+//    @Override
     public Address getBindAddress() {
         return this.swarmDiscoveryUtil.getMyAddress();
     }
 
-    @Override
+//    @Override
     public Address getPublicAddress() {
         return this.swarmDiscoveryUtil.getMyAddress();
     }
 
-    @Override
+//    @Override
     public ServerSocketChannel getServerSocketChannel() {
         return this.swarmDiscoveryUtil.getServerSocketChannel();
     }

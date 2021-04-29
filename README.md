@@ -1,3 +1,9 @@
+# WIP
+
+Migrate to Hazelcast 4.x  
+Structure changes (packages and methods signature)  
+NOT TESTED - needs a deep review of the changes (search FIXME)
+
 # hazelcast-docker-swarm-discovery-spi
 
 [![Build Status](https://travis-ci.org/bitsofinfo/hazelcast-docker-swarm-discovery-spi.svg?branch=master)](https://travis-ci.org/bitsofinfo/hazelcast-docker-swarm-discovery-spi)

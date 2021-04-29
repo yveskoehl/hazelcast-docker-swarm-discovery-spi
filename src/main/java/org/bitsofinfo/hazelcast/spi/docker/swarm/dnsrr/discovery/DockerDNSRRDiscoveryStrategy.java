@@ -14,19 +14,15 @@
 
 package org.bitsofinfo.hazelcast.spi.docker.swarm.dnsrr.discovery;
 
+import com.hazelcast.cluster.Address;
 import com.hazelcast.logging.ILogger;
-import com.hazelcast.nio.Address;
 import com.hazelcast.spi.discovery.AbstractDiscoveryStrategy;
 import com.hazelcast.spi.discovery.DiscoveryNode;
 import com.hazelcast.spi.discovery.SimpleDiscoveryNode;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Hazelcast discovery strategy to be used with docker endpoint_mode: dnsrr
